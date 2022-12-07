@@ -1,0 +1,344 @@
+\setcounter{chapter}{3}
+\chapter{微分算子和 Weitzenb\"ock 公式}
+
+
+
+\section{Beltrami-Laplace 算子}
+
+
+
+\begin{definition}
+  设 $(M,g)$ 是 $n$ 维黎曼流形, $X\in\mathscr{X}(M)$ 是光滑切向量场, 称线性映射
+  \begin{align*}
+    \div\colon\mathscr{X}(M) & \longrightarrow C^{\infty}(M) \\
+    X & \longrightarrow \div X = C_1^1(DX)
+  \end{align*}
+  为黎曼流形 $(M,g)$ 上的散度算子, $\div X$ 称为向量场 $X$ 的散度.
+\end{definition}
+
+假定 $(U;x^i)$ 是 $M$ 的局部坐标系, 并设 $X|_U=X^i\pdv{x^i}$, 则
+\[DX = X^i_{,j}\pdv{x^i}\otimes \diff x^j 
+  = \biggl(\frac{\partial X^i}{\partial x^j}+X^k\Gamma^i_{kj}\biggr)\pdv{x^i}\otimes \diff x^j.\]
+因此
+\begin{align*}
+  \div X
+  & = C_1^1(DX) = \sum_m DX\biggl(\diff x^m,\pdv{x^m}\biggr) \\
+  & = X_{,i}^i = \frac{\partial X^i}{\partial x^i}+X^k\Gamma_{ki}^i.
+\end{align*}
+又因为
+\[\Gamma^i_{ki} = \frac{1}{2}g^{ij}\frac{\partial}{\partial x^k}g_{ij}
+  = \frac{1}{2G}\frac{\partial G}{\partial x^k} 
+  = \frac{1}{\sqrt{G}}\frac{\partial\sqrt{G}}{\partial x^k},\]
+其中 $G=\det(g_{ij})$. 在上式中, 我们用到了 
+\href{https://en.wikipedia.org/wiki/Jacobi%27s_formula}{Jacobi 公式}, 即, 假设 $A(t)$
+为 $n\times n$ 矩阵, 其每个元素都是关于 $t$ 的可微函数, 则
+\[\frac{\diff}{\diff t}\det A(t) 
+  = \det A(t)\cdot\tr\biggl(A(t)^{-1}\frac{\diff A(t)}{\diff t}\biggr).\]
+故
+\[\div X = \frac{\partial X^i}{\partial x^i}
+  + \frac{X^k}{\sqrt{G}}\frac{\partial\sqrt{G}}{\partial x^k}
+  = \frac{1}{\sqrt{G}}\frac{\partial}{\partial x^k}\bigl(\sqrt{G}X^k\bigr).\]
+
+散度算子也可以通过内乘来定义:
+
+设 $\Omega\in A^r(M)$, $X\in\mathscr{X}(M)$, 定义 $i_X\Omega\in A^{r-1}(M)$ 使得
+\begin{align*}
+  i_X\Omega\colon \mathscr{X}(M)\times\cdots\times\mathscr{X}(M)
+  & \longrightarrow C^{\infty}(M) \\
+  (X_1,\cdots,X_{r-1}) & \longmapsto \Omega(X,X_1,\cdots,X_{r-1}).
+\end{align*}
+
+
+
+\begin{definition}
+  设 $f\in C^{\infty}(M)$, 则 $\diff f\in A^1(M)=\mathscr{T}_1^0(M)$, 
+  借助于黎曼度量 $g$, $\diff f$ 对应着 $M$ 上的一个光滑切向量场, 记为 $\nabla f$,
+  使得对任意 $X\in\mathscr{X}(M)$, 有
+  \[g(\nabla f,X) = \diff f(X) = X(f).\]
+  称 $\nabla f$ 为 $f$ 在度量 $g$ 下的梯度, 此时
+  \[\nabla\colon C^{\infty}(M)\to\mathscr{X}(M),\quad f\mapsto \nabla f\]
+  称为 $(M,g)$ 上的梯度算子.
+\end{definition}
+
+在局部坐标系 $(U;x^i)$ 下, 记 $f_i=\pdv{f}{x^i}$,
+$\diff f=f_i\diff x^i$, 如果令 $\nabla f = f^i\pdv{x^i}$, 则
+\begin{align*}
+  f_i
+  & = \diff f\biggl(\pdv{x^i}\biggr) = g\biggl(\nabla f,\pdv{x^i}\biggr)
+    = f^j g\biggl(\pdv{x^j},\pdv{x^i}\biggr) \\
+  & = f^j g_{ij}.
+\end{align*}
+于是 $f^j = g^{ij}f_i$, 从而
+\[\nabla f|_U = f_j g^{ij} \pdv{x^i}.\]
+
+把梯度算子和散度算子复合起来得到一个非常重要的的微分算子
+\begin{definition}
+  线性映射 $\Delta = \div\circ\nabla\colon C^{\infty}(M)\to C^{\infty}(M)$
+  称为流形上的 \textbf{Beltrami-Laplace 算子}.
+\end{definition}
+
+将梯度算子和散度算子的局部坐标表达式结合起来, 便得到 $\Delta$ 的局部坐标表达式为
+\[\Delta f|_U = \frac{1}{\sqrt{G}}\frac{\partial}{\partial x^i}
+  \biggl(\sqrt{G}g^{ij}\frac{\partial f}{\partial x^j}\biggr).\]
+
+由于函数 $f$ 的 Hessian 为
+\[\Hess(f)(X,Y) = XY(f)-\D_XY(f),\]
+在局部坐标系下
+\[\Hess(f)\biggl(\pdv{x^i},\pdv{x^j}\biggr)
+  = \pdv{x^i}\pdv{x^j}f - \Gamma_{ji}^k\pdv{x^k}f = f_{j,i}.\]
+而 $g_{ij,k} = g^{ij}_{,k}=0$, 故
+\begin{align*}
+  \tr_g \Hess(f)
+  & = g^{ij}\Hess(f)\biggl(\pdv{x^i},\pdv{x^j}\biggr) = g^{ij}f_{j,i} \\
+  & = \bigl(g^{ij}f_j\bigr)_{,i} = f^j_{,j} \\
+  & = C_1^1(\D(\nabla f)) = \Delta f,
+\end{align*}
+从而
+\[\Delta f = \tr_g\Hess(f).\]
+
+对于一般的张量场 $\tau\in\mathscr{T}_s^r(M)$, 由
+\[\Delta\tau = g^{ij}\biggl(\D_{\pdv{x^i}}\D_{\pdv{x^j}}\tau
+  - \D_{\D_{\pdv{x^i}}\pdv{x^j}}\tau\biggr)\]
+定义的算子 $\Delta\colon\mathscr{T}_s^r(M)\to\mathscr{T}_s^r(M)$
+称为黎曼流形 $(M,g)$ 上的 Rough-Laplace 算子, 也称为迹 Laplace 算子.
+
+
+
+\section{散度定理}
+
+
+
+设 $(U;x^i)$ 是 $(M,g)$ 上的局部坐标系, 其体积元素
+\[(\diff V_M)|_U = \sqrt{G}\diff x^1\wedge\cdots\wedge\diff x^n\]
+是 $(M,g)$ 上大范围定义的几何量, 于是有
+
+\begin{theorem}
+  设 $(M,g)$ 是紧致无边的 $n$ 维可定向黎曼流形, 则对任意 $X\in\mathscr{X}(M)$, 有
+  \[\int_M \div X\diff V_M = 0.\]
+\end{theorem}
+
+\begin{proof}
+  令
+  \[\omega = (-1)^{i+1}\sqrt{G}X^i\diff x^1\wedge\cdots\wedge\widehat{\diff x^i}
+    \wedge\cdots\wedge\diff x^n.\]
+  易证 $\omega$ 是大范围定义的 $n-1$ 次外微分式, 且
+  \[\diff\omega = \pdv{x^i}\bigl(\sqrt{G}X^i\bigr)\diff x^1\wedge\cdots\wedge\diff x^n
+    = \div X\diff V_M.\]
+  于是由 Stokes 定理,
+  \[\int_{M} \div X\diff V_M = \int_M \diff\omega = \int_{\partial M} \omega = 0.\qedhere\]
+\end{proof}
+
+对于带边的黎曼流形有更为精细的结果:
+\begin{theorem}
+  设 $(M,g)$ 是紧致带边的 $n$ 维可定向黎曼流形, $\vec{n}$ 是 $\partial M$
+  上指向 $M$ 内部的单位法向量场, 则对于任意 $X\in\mathscr{X}(M)$, 有
+  \[\int_M \div X\diff V_M = -\int_{\partial M} g(\vec{n},X)\diff V_{\partial M},\]
+  其中 $\partial M$ 具有从 $M$ 上诱导的定向, $\diff V_{\partial M}$ 为 $\partial M$ 的体积元素.
+\end{theorem}
+
+\begin{proof}
+  取与定向相符的局部坐标系 $(U;x^i)$ 使得 $U\cap\partial M\neq\emptyset$, 并且
+  \[U\cap\partial M = \{p\in U\mid x^n(p)=0\}.\]
+  在 $U\cap\partial M$ 上, $\{(-1)^nx^1,x^2,\cdots,x^{n-1}\}$
+  给出了 $\partial M$ 的与诱导定向相符的局部坐标系, 因此 $\partial M$
+  的体积元素 $\diff V_{\partial M}$ 限制在坐标邻域 $U\cap\partial M$
+  上可表示为
+  \[\diff V_{\partial M} = (-1)^n\sqrt{\overline{G}} \diff x^1\wedge\cdots\wedge\diff x^{n-1},\]
+  其中 $\overline{G} = \det(g_{\alpha\beta})$, $1\leq\alpha,\beta\leq n-1$.
+
+  由于
+  \[\omega|_U = (-1)^{i+1}\sqrt{G}X^i\diff x^1\wedge\cdots\wedge\widehat{\diff x^i}
+    \wedge\cdots\wedge\diff x^n,\]
+  故
+  \[\omega_{U\cap\partial M} = (-1)^{n+1}\sqrt{G}X^n\diff x^1\wedge\cdots\wedge\diff x^{n-1}.\]
+  作为 $M$ 上沿 $\partial M$ 定义的, 并指向 $M$ 内部的单位法向量场 $\vec{n}$,
+  令 $\vec{n}=a^i\pdv{x^i}$ 且 $a^n>0$, 现
+  \[\biggl\{(-1)^n\pdv{x^1},\pdv{x^2},\cdots,\pdv{x^{n-1}}\biggr\}\]
+  是 $U\cap\partial M$ 上与 $\partial M$ 的诱导定向相符的自然标架场, 由假设知
+  \begin{align*}
+    g\biggl(\vec{n},\pdv{x^{\alpha}}\biggr) & = a^ig_{i\alpha}=0,\quad \alpha=1,\cdots,n-1. \\
+    g(\vec{n},\vec{n}) & = 1 = a^ia^jg_{ij} = a^ig_{i\alpha}a^{\alpha} + a^ig_{in}a^n = a^ia^ng_{in}.
+  \end{align*}
+  于是
+  \begin{align*}
+    0
+    & = a^ig_{i\alpha}g^{\alpha j} = a^i\bigl(g_{ik}g^{kj}-g_{in}g^{nj}\bigr) \\
+    & = a^i\bigl(\delta_i^j-g_{in}g^{nj}\bigr) \\
+    & = a^j-\frac{1}{a^n}g^{nj},
+  \end{align*}
+  即 $a^na^j=g^{nj}$. 令 $j=n$ 得 $a^n=\sqrt{g^{nn}}$, 故 $a^j=\frac{1}{\sqrt{g^{nn}}}g^{nj}$.
+  同时,
+  \begin{align*}
+    a^ig_{i\alpha}=0
+    & \Longrightarrow a^ng_{n\alpha} + a^{\beta}g_{\beta\alpha}=0 \\
+    & \Longrightarrow g_{n\alpha} = -\frac{a^{\beta}}{a^n}g_{\beta\alpha}
+      = -\frac{g^{n\beta}}{g^{nn}}g_{\beta\alpha}.
+  \end{align*}
+  因此
+  \begin{align*}
+    G
+    & = \begin{vmatrix}
+      g_{11}    & \cdots & g_{1,n-1}   & g_{1n}    \\
+      \vdots    & \ddots & \vdots      & \vdots    \\
+      g_{n-1,1} & \cdots & g_{n-1,n-1} & g_{n-1,n} \\
+      g_{n1}    & \cdots & g_{n,n-1}   & g_{nn}
+    \end{vmatrix}
+    \quad\begin{pmatrix}
+      \text{最后一行加上} \\
+      \text{第一行的}\ \frac{g^{n1}}{g^{nn}}\ \text{倍}, \\
+      \text{第二行的}\ \frac{g^{n2}}{g^{nn}}\ \text{倍},\cdots, \\
+      \text{第\ }n-1\text{\ 行的\ }\frac{g^{n,n-1}}{g^{nn}}\text{\ 倍}
+    \end{pmatrix} \\
+    & = \det\begin{pmatrix}
+      g_{\alpha\beta} & * \\
+      0 & g_{nn}+\frac{g^{n\gamma}}{g^{nn}}g_{\gamma n}
+    \end{pmatrix} \\
+    & = \overline{G}\biggl(g_{nn} + \frac{g^{n\gamma}}{g^{nn}}g_{\gamma n}\biggr).
+  \end{align*}
+  又因为
+  \[g^{n\gamma}g_{\gamma n} = g^{ni}g_{in} - g^{nn}g_{nn} = 1 - g^{nn}g_{nn},\]
+  故
+  \[\frac{1}{g^{nn}}g^{n\gamma}g_{\gamma n} = \frac{1}{g^{nn}} - g_{nn},\]
+  从而
+  \[G = \frac{\overline{G}}{g^{nn}} = \frac{\overline{G}}{(a^n)^2}.\]
+ 
+  另一方面,
+  \begin{align*}
+    g(\vec{n},X)
+    & = g\biggl(\vec{n},X^n\pdv{x^n}\biggr) \quad 
+      \biggl(g\biggl(\vec{n},\pdv{x^{\alpha}}\biggr) = 0\biggr) \\
+    & = X^n a^i g_{ni} = \frac{X^n}{a^n}.\quad (a^ig_{ni}a^n = 1)
+  \end{align*}
+  因此
+  \begin{align*}
+    \omega|_{U\cap\partial M}
+    & = (-1)^{n+1} \frac{\overline{G}}{a^n} X^n\diff x^1\wedge\cdots\wedge\diff x^{n-1} \\
+    & = (-1)^{n+1} \sqrt{\overline{G}} g(\vec{n},X) \diff x^1\wedge\cdots\wedge\diff x^{n-1} \\
+    & = - g(\vec{n},X) \diff V_{\partial M}.
+  \end{align*}
+  由 Stokes 定理得
+  \[\int_{M} \div X\diff V_M = \int_M \diff\omega 
+    = \int_{\partial M}\omega = -\int_{\partial M} g(\vec{n},X)\diff V_{\partial M}.\qedhere\]
+\end{proof}
+
+
+
+\begin{corollary}
+  设 $(M,g)$ 是紧致带边的 $n$ 维可定向黎曼流形, $\vec{n}$ 是 $\partial M$
+  上指向 $M$ 内部的单位法向量场, 则对任意 $f,h\in C^{\infty}(M)$ 有如下 Green 公式
+  \[\int_M (h\Delta f - f\Delta h)\diff V_M 
+    = \int_{\partial M} \bigl(f\vec{n}(h) - h\vec{n}(f)\bigr)\diff V_{\partial M}.\]
+  
+  特别地, 取 $h\equiv 1$, 则
+  \[\int_M \Delta f\diff V_M = -\int_{\partial M} \vec{n}(f)\diff V_{\partial M}.\]
+  当 $\partial M=\emptyset$ 时, $\int_M \Delta f\diff V_M = 0$.
+\end{corollary}
+
+
+\section{Hodge-Laplace 算子}
+
+
+
+在黎曼流形 $(M,g)$ 的外微分式空间上定义内积如下:
+设 $\varphi,\psi\in A^r(M)$, 在局部坐标系 $(U;x^i)$ 下, 它们可表示为
+\begin{align*}
+  \varphi|_U & = \frac{1}{r!}\varphi_{i_1\cdots i_r}\diff x^{i_1}\wedge\cdots\wedge\diff x^{i_r} \\
+             & = \sum_{i_1<\cdots<i_r}\varphi_{i_1\cdots i_r}\diff x^{i_1}\wedge\cdots\wedge
+                \diff x^{i_r}, \\
+  \psi|_U    & = \frac{1}{r!}\psi_{i_1\cdots i_r}\diff x^{i_1}\wedge\cdots\wedge\diff x^{i_r}.
+\end{align*}
+记 $(g_{ij})$ 的逆矩阵为 $(g^{ij})$, 令
+\begin{align*}
+  \innerp{\varphi}{\psi}
+  & = \frac{1}{r!}\varphi_{i_1\cdots i_r}\psi_{j_1\cdots j_r}g^{i_1j_1}\cdots g^{i_rj_r} \\
+  & = \frac{1}{r!}\varphi^{i_1\cdots i_r}\psi_{i_1\cdots i_r} \\
+  & = \sum_{i_1<\cdots<i_r}\varphi^{i_1\cdots i_r}\psi_{i_1\cdots i_r}.
+\end{align*}
+
+这种 $M$ 上的每点处的内积与局部坐标系的选取无关, 是 $M$ 上大范围定义的运算, 因此也是定义在 $M$
+上的光滑函数, 并且
+\[\innerp{\varphi}{\varphi} = \frac{1}{r!}\varphi^{i_1\cdots i_r}\varphi_{i_1\cdots i_r}
+  = \frac{1}{r!}\varphi_{i_1\cdots i_r}^2\geq 0,\]
+等号成立当且仅当 $\varphi\equiv 0$.
+
+当 $M$ 是紧流形时, 定义 $A^r(M)$ 在 $M$ 上的整体内积为
+\[(\varphi,\psi) = \int_M \innerp{\varphi}{\psi}\diff V_M,\quad 
+  \|\varphi\|^2=(\varphi,\varphi).\]
+此时, $A^r(M)$ 称为一个内积空间,
+外微分算子 $\diff\colon A^r(M)\longrightarrow A^{r+1}(M)$ 成为内积空间之间的一个线性映射,
+因而存在与之共轭的线性映射 $\diff^*\colon A^{r+1}(M)\longrightarrow A^r(M)$, 使得
+\[(\diff^*\psi,\varphi) = (\psi,\diff\varphi),\quad \forall\psi\in A^{r+1}(M),\varphi\in A^r(M).\]
+
+为了求出线性算子 $\diff ^*$ 的表达式, 需要定义 Hodge 星算子 $*\colon A^r(M)\to A^{n-r}(M)$.
+\begin{definition}
+  设 $\omega\in A^r(M)$,
+  \[\omega|_U = \frac{1}{r!}\omega_{i_1\cdots i_r}\diff x^{i_1}\wedge\cdots\wedge\diff x^{i_r},\]
+  令
+  \[(*\omega)|_U = \frac{\sqrt{G}}{r!(n-r)!}\delta_{i_1\cdots i_n}^{1\cdots n}
+    \omega^{i_1\cdots i_r}\diff x^{i_{r+1}}\wedge\cdots\wedge\diff x^{i_n}.\]
+  这也是与定向相符的局部坐标系选取无关的量, 因此 $*\omega$ 是 $M$ 上大范围定义的 $n-r$
+  次外微分式, 即 $*\omega\in A^{n-r}(M)$, 称算子 $*$ 为 Hodge 星算子.
+\end{definition}
+
+关于 Hodge 星算子, 有如下结论
+\begin{lemma}
+  设 $(M,g)$ 是可定向的 $n$ 维紧致黎曼流形, 则 Hodge 星算子 $*$ 有如下性质: 
+  $\forall \varphi,\psi\in A^r(M)$,
+  \begin{enumerate}[(1)]
+    \item $\varphi\wedge(*\varphi) = \innerp{\varphi}{\psi}\diff V_M$;
+    \item $*\diff V_M=1$, $*1=\diff V_M$;
+    \item $*(*\varphi) = (-1)^{r(n+r)}\varphi = (-1)^{rn+r}\varphi$;
+    \item $(*\varphi,*\psi) = (\varphi,\psi)$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  (1)
+  \begin{align*}
+    \varphi\wedge(*\psi)
+      & = \frac{1}{r!}\frac{\sqrt{G}}{r!(n-r)!}\varphi_{i_1\cdots i_r}
+        \psi^{j_1\cdots j_r}\delta_{j_1\cdots j_n}^{1\cdots n}
+        \diff x^{i_1}\wedge\cdots\wedge\diff x^{i_r}
+        \wedge\diff x^{j_{r+1}}\wedge\cdots\wedge\diff x^{j_n} \\
+      & = \frac{\sqrt{G}}{(r!)^2(n-r)!}\varphi_{i_1\cdots i_r}
+        \psi^{j_1\cdots j_r}\delta_{j_1\cdots j_n}^{1\cdots n}
+        \delta_{1\cdots r,r+1\cdots n}^{i_1\cdots i_r j_{r+1}\cdots j_n}
+        \diff x^1\wedge\cdots\wedge\diff x^n \\
+      & = \frac{\sqrt{G}}{(r!)^2}\varphi_{i_1\cdots i_r}\psi^{j_1\cdots j_r}
+        \delta_{j_1\cdots j_r}^{i_1\cdots i_r}
+        \diff x^1\wedge\cdots\wedge\diff x^n \\
+      & = \frac{\sqrt{G}}{r!}\varphi_{i_1\cdots i_r}\psi^{i_1\cdots i_r}
+        \diff x^1\wedge\cdots\wedge\diff x^n \\
+      & = \innerp{\varphi}{\psi}\diff V_M.
+  \end{align*}
+
+  (2) 由于
+  \[\diff V_M = \sqrt{G}\diff x^1\wedge\cdots\wedge\diff x^n
+    = \frac{\sqrt{G}}{n!}\delta_{i_1\cdots i_n}^{1\cdots n}
+    \diff x^{i_1}\wedge\cdots\wedge\diff x^{i_n},\]
+  故 $(\diff V_M)_{i_1\cdots i_n} = \sqrt{G}\delta_{i_1\cdots i_n}^{1\cdots n}$, 从而
+  \[(\diff V_M)^{i_1\cdots i_n} = \sqrt{G}\delta_{j_1\cdots j_n}^{1\cdots n}
+    g^{i_1j_1}\cdots g^{i_nj_n} = \frac{1}{\sqrt{G}}\delta_{1\cdots n}^{i_1\cdots i_n}.\]
+  因此
+  \[*\diff V_M = \frac{\sqrt{G}}{n!0!}\delta_{i_1\cdots i_n}^{1\cdots n}
+    \frac{1}{\sqrt{G}}\delta_{1\cdots n}^{i_1\cdots i_n} = 1.\]
+
+  (3) 由定义
+  \[*\varphi = \frac{\sqrt{G}}{r!(n-r)!}\delta_{i_1\cdots i_n}^{1\cdots n}
+    \varphi^{i_1\cdots i_r}\diff x^{i_{r+1}}\wedge\cdots\wedge\diff x^{i_n},\]
+  得
+  \[(*\varphi)_{i_{r+1}\cdots i_n} = \frac{\sqrt{G}}{r!}
+    \delta_{i_1\cdots i_n}^{1\cdots n}\varphi^{i_1\cdots i_r}.\]
+  因此
+  \begin{align*}
+    *(*\varphi)
+    ={} & \frac{\sqrt{G}}{(n-r)!r!}\delta_{j_1\cdots j_n}^{1\cdots n}
+      (*\varphi)^{j_1\cdots j_{n-r}} \diff x^{j_{n-r+1}}\wedge\cdots\wedge\diff x^{j_n} \\
+    ={} & \frac{\sqrt{G}}{(n-r)!r!}\delta_{j_1\cdots j_n}^{1\cdots n}
+      (-1)^{r(n-r)} (*\varphi)^{j_{r+1}\cdots j_n} \diff x^{j_1}\wedge\cdots\wedge\diff x^{j_r} \\
+    ={} & \frac{(-1)^{r(n-r)}}{r!}\frac{G}{(n-r)!r!}
+      \delta_{j_1\cdots j_n}^{1\cdots n}\delta_{i_1\cdots i_n}^{1\cdots n} \\
+        & g^{j_{r+1}i_{r+1}}\cdots g^{j_ni_n} \varphi^{i_1\cdots i_r}
+          \diff x^{j_1}\wedge\cdots\wedge\diff x^{j_r}
+  \end{align*}
+\end{proof}

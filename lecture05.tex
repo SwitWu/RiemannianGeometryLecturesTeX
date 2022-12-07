@@ -1,0 +1,33 @@
+\setcounter{chapter}{4}
+\chapter{指数映射与度量的完备性}
+
+
+
+\section{测地线与拉回丛}
+
+
+
+设 $(M,\D)$ 是仿射联络空间, $\gamma:[a,b)\to M$ 是一条光滑曲线, $\gamma'(t)$
+是 $\gamma(t)$ 的切向量场. 如果 $\gamma'(t)$ 沿 $\gamma(t)$ 平行, 则称 $\gamma(t)$
+是 $M$ 上的一条测地线. 取 $M$ 的局部坐标系 $(U;x^i)$, 使得
+$\gamma(t)|_U = (x^1(t), \cdots, x^n(t))$, 则 $\gamma'(t)=\frac{\diff x^i(t)}{\diff t}\pdv{x^i}$. 因此
+\[\gamma(t)\text{\ 是测地线}\Longleftrightarrow \D_{\gamma'(t)}\gamma'(t)=0,\]
+即 $\D_{\gamma'(t)}\Bigl(\frac{\diff x^i(t)}{\diff t}\pdv{x^i}\Bigr)=0$,
+于是 $\{x^i(t)\}$ 满足微分方程组
+\[\frac{\diff^2 x^i(t)}{\diff t} + 
+\Gamma_{jk}^i\frac{\diff x^j(t)}{\diff t}\frac{\diff x^k(t)}{\diff t}=0,
+\quad i=1,\cdots,n,\]
+其中 $\Gamma_{jk}^i$ 是 $(M,\D)$ 的联络系数. 这是一个二阶非线性常微分方程组, 它在整个区间
+$[a,b)$ 上不一定有解, 但给定初值条件后, 局部上有唯一解.
+
+
+\begin{lemma}
+  给定 $v\in M_x$, 则局部上存在唯一的一条测地线 $\gamma(t)$ 使得
+  $\gamma(0)=x$, $\gamma'(0)=v$.
+\end{lemma}
+
+
+设 $f\colon N\to M$ 是流形 $N$ 与 $M$ 之间的光滑映射, 令
+\[f^* TM = \bigcup_{x\in N} \{x\}\times M_{f(x)},\]
+则 $f^*TM$ 为 $N$ 上秩为 $\dim M=n$ 的向量丛, 称为 $M$ 上的切丛
+$TM$ 通过 $f$ 拉回到 $N$ 上的向量丛

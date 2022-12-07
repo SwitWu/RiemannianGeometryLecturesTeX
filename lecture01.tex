@@ -1,0 +1,280 @@
+\chapter{度量，联络，平行移动}
+
+
+
+\section{黎曼度量}
+
+
+
+\begin{definition}
+  设 $M$ 是一个 $n$ 维光滑流形, $M$ 上一个黎曼度量就是 $M$ 上一个对称正定的二阶光滑协变张量场,
+  记为 $g$, 或 $\forall x\in M$, 在 $M$ 的切空间 $M_x$ 上光滑地指定一个向量内积
+  \[g_x(\cdot,\cdot)\colon M_x\times M_x\to\FR,\]
+  满足对任意 $a_1,a_2\in\FR$ 和 $X_1,X_2,Y\in M_x$, 有
+  \begin{itemize}
+    \item (线性性) $g_x(a_1X_1 + a_2X_2, Y) = a_1g_x(X_1,Y) + a_2g_x(X_2,Y)$;
+    \item (对称性) $g_x(X,Y) = g_x(Y,X)$;
+    \item (正定性) $g_x(X,X)\geq 0$, 且等号成立当且仅当 $X=0$.
+  \end{itemize}
+  把具有黎曼度量 $g$ 的流形 $M$ 称为黎曼流形, 记为 $(M,g)$.
+\end{definition}
+
+
+\begin{remark}
+  (1) 所谓光滑指定, 是指在 $M$ 的任意局部坐标系 $(U;x^i)$, $i=1,\cdots,n$ 下,
+  \[g_{ij}(x) = g_x\biggl(\frac{\partial}{\partial x^i}, \frac{\partial}{\partial x^j}\biggr)\]
+  是 $x^1,\cdots,x^n$ 的光滑函数. 此时度量 $g$ 可以表示为
+  \[g|_U = g_{ij}\diff x^i\otimes\diff x^j,\]
+  且 $(g_{ij}(x))_{n\times n}$ 是正定对称矩阵.
+
+  (2) 度量的存在性: 满足第二可数公理的光滑流形上必存在黎曼度量.
+
+  (3) 在黎曼流形 $(M,g)$ 上可求曲线长.
+
+  设 $\gamma: [a,b]\to M$ 是 $M$ 上一条光滑曲线, 令
+  \[L(\gamma) = \int_a^b |\gamma'(t)|\diff t
+    = \int_a^b \sqrt{g_{ij}(\gamma(t))\frac{\diff x^i}{\diff t}\frac{\diff x^j}{\diff t}}\diff t,\]
+  其中 $x^i=x^i(t)$ 是曲线的参数表示, $L(\gamma)$ 称为曲线 $\gamma$ 的弧长.
+
+  (4) 在黎曼流形 $(M,g)$ 上可求区域的体积.
+
+  如果 $(M,g)$ 是有向黎曼流形, $\{(U_{\alpha}; x_{\alpha}^i\mid \alpha\in I)\}$
+  是 $M$ 上定向相符的坐标覆盖, 设
+  \[g|_{U_{\alpha}} = g_{ij}^{\alpha}\diff x_{\alpha}^i\otimes\diff x_{\alpha}^j,\]
+  令
+  \[\diff V_M|_{U_{\alpha}} = \sqrt{\det\bigl(g_{ij}^{\alpha}\bigr)}
+    \diff x_{\alpha}\wedge\cdots\wedge\diff x_{\alpha}^n.\]
+  断言: $\diff V_M$ 是大范围定义的 $n$ 次外微分式, 称为 $(M,g)$ 的体积元素. 当 $M$ 紧致时,
+  \[|M| = \int_M \diff V_M\]
+  称为 $M$ 的体积.
+\end{remark}
+
+
+
+\section{仿射联络}
+
+
+
+\begin{definition}
+  设 $M$ 是一个 $n$ 维光滑流形, $M$ 上一个联络是指映射
+  \begin{align*}
+    \D\colon \mathscr{X}(M)\times\mathscr{X}(M) & \longrightarrow\mathscr{X}(M) \\
+    (V,X) & \longmapsto \D_V X
+  \end{align*}
+  满足
+  \begin{itemize}
+    \item ($C_1$) $\D_{fV+gW}X = f\D_V X+g\D_V W$;
+    \item ($C_2$) $\D_V (fX) = V(f)X+f\D_V X$;
+    \item ($C_3$) $\D_V (X+Y) = \D_V X+\D_V Y$.
+  \end{itemize}
+  其中, $f,g\in C^{\infty}(M)$, $X,Y,V,W\in\mathscr{X}(M)$,
+  $\mathscr{X}(M)$ 表示 $M$ 上光滑切向量场的集合.
+  给定一个联络 $\D$ 后, $\D_V X$ 称为向量场 $X$ 沿 $V$ 的协变导数,
+  $\D$ 称为仿射联络, $(M,\D)$ 称为仿射联络空间.
+\end{definition}
+
+
+\begin{remark}
+  (3) 在局部坐标系 $(U;x^i)$ 下, 令
+  \[\D_{\frac{\partial}{\partial x^j}}\frac{\partial}{\partial x^i}
+     = \Gamma_{ij}^k \frac{\partial}{\partial x^k},\]
+  $\Gamma_{ij}^k$ 称为联络系数. 当 $X=X^i\frac{\partial}{\partial x^i}$ 时有
+  \begin{align*}
+    \D_{\frac{\partial}{\partial x^j}} X
+    & = \D_{\frac{\partial}{\partial x^j}}\biggl(X^i\frac{\partial}{\partial x^i}\biggr) 
+      = \frac{\partial X^i}{\partial x^j}\frac{\partial}{\partial x^i}
+        + X^i\Gamma_{ij}^k \frac{\partial}{\partial x^k} \\
+    & = \biggl(\frac{\partial X^k}{\partial x^j} + X^i\Gamma_{ij}^k\biggr)\frac{\partial}{\partial x^k}.
+  \end{align*}
+  记 $\frac{\partial X^k}{\partial x^j}+X^i\Gamma_{ij}^k = X^k_{,j}$,
+  则 $\D_{\frac{\partial}{\partial x^j}}X = X^k_{,j}\frac{\partial}{\partial x^k}$.
+  说明向量场 $X$ 沿 $\frac{\partial}{\partial x^j}$ 方向的协变导数等于一个普通导数加上一个与联络有关的量.
+
+  (4) 光滑流形上联络存在且很多.
+  \begin{lemma}
+    一个流形上的联络是一个凸集, 即如果 $\D^1,\cdots,\D^k$ 是联络, $f_1,\cdots,f_k$
+    是光滑函数, 且 $\sum_{i=1}^k f_i=1$, 则 $\D = \sum_{i=1}^k f_i\D^i$ 也是联络.
+  \end{lemma}
+\end{remark}
+
+
+
+\section{黎曼联络}
+
+
+
+\begin{theorem}
+  给定 $M$ 上的黎曼度量 $g$, 则在 $M$ 上存在唯一的仿射联络 $\D$ 满足
+  \begin{itemize}
+    \item ($L_1$) $Xg(Y,Z)=\colon X\innerp{Y}{Z}=\innerp{\D_X Y}{Z}+\innerp{Y}{\D_X Z}$ (度量与联络相容);
+    \item ($L_2$) $\D_XY - \D_YX - [X,Y] = 0$ (无挠性).
+  \end{itemize}
+  这种联络称为 $(M,g)$ 上的黎曼联络或 Levi-Civita 联络.
+  该定理称为\emph{黎曼几何基本定理}.
+\end{theorem}
+
+\begin{proof}
+  (唯一性) 如果有满足上述条件的联络 $\D$, 则令
+  $\D_{\frac{\partial}{\partial x^j}}\frac{\partial}{\partial x^i} = \Gamma_{ij}^k\frac{\partial}{\partial x^k}$,
+  而 $g_{ij} = g\bigl(\frac{\partial}{\partial x^i}, \frac{\partial}{\partial x^j}\bigr)$.
+  由 ($L_2$) 得,
+  \[0 = \D_{\pdv{x^i}}\pdv{x^j} - \D_{\pdv{x^j}}\pdv{x^i} - \poissonbra*{\pdv{x^i}}{\pdv{x^j}}
+    = \bigl(\Gamma_{ji}^k-\Gamma_{ij}^k\bigr)\pdv{x^k}.\]
+  故 $\Gamma_{ij}^k = \Gamma_{ji}^k$. 而由 ($L_1$) 得
+  \[\pdv{x^i}g_{jk} = \pdv{x^i}\innerp*{\pdv{x^j}}{\pdv{x^k}} 
+    = \Gamma_{ji}^l g_{lk} + \Gamma_{ki}^l g_{lj},\]
+  即
+  \[\partial_i g_{jk} = \Gamma_{ji}^l g_{lk} + \Gamma_{ki}^l g_{lj}.\]
+  将 $i,j,k$ 轮换后得
+  \[\partial_j g_{ki} = \Gamma_{kj}^l g_{li} + \Gamma_{ij}^l g_{lk},\]
+  \[\partial_k g_{ij} = \Gamma_{ik}^l g_{lj} + \Gamma_{kj}^l g_{li}.\]
+  上述前两式相加减去第三式, 并由联络系数的对称性得
+  \[2\Gamma_{ij}^l g_{lk} = \partial_i g_{jk} + \partial_j g_{ki} - \partial_k g_{ij},\]
+  因此
+  \[\Gamma_{ij}^k = \frac{1}{2}g^{kl} \bigl(\partial_i g_{jl} + \partial_j g_{il} - \partial_l g_{ij}\bigr).\]
+
+  (存在性) 把 $\Gamma_{ij}^k$ 的表达式代入 $\D_{\pdv{x^j}}\pdv{x^i} = \Gamma_{ij}^k\pdv{x^k}$
+  就定义了算子 $\D$, 直接验证
+  \begin{itemize}
+    \item $\D$ 是仿射联络 (满足 $(C_1)$--$(C_3)$);
+    \item $\D$ 是黎曼联络 (满足 $(L_1)$--$(L_2)$).\qedhere
+  \end{itemize}
+\end{proof}
+
+
+\begin{remark}
+  (1) $\Gamma_{ij}^k$ 称为联络系数或联络 $D$ 关于局部坐标系 $\{x^i\}$ 的 Christoffel 记号.
+
+  (2) 令
+  \[T(X,Y) = \D_XY - \D_YX - \poissonbra{X}{Y},\]
+  $T$ 称为 $M$ 上关于仿射联络 $\D$ 的挠率张量, 易证 $T$ 关于 $X$ 是 $C^{\infty}(M)$
+  线性的, 即对于 $\forall f\in C^{\infty}(M)$ 和 $\forall X,Y\in\mathscr{X}(M)$
+  有 $T(fX,Y)=fT(X,Y)$. 而且 $T$ 是反对称的, 即 $T(X,Y)=-T(Y,X)$.
+  因此 $T$ 是 $(1,2)$ 型张量场. 在局部坐标系 $(U;x^i)$ 下,
+  \[T\biggl(\pdv{x^i},\pdv{x^j}\biggr)
+    = \bigl(\Gamma_{ji}^k-\Gamma_{ij}^k\bigr)\pdv{x^k} =\colon T_{ij}^k\pdv{x^k},\]
+  所以
+  \[T = T_{ij}^k\pdv{x^k}\otimes\diff x^i\otimes\diff x^j.\]
+\end{remark}
+
+
+
+\section{平行移动}
+
+
+
+设 $(M,\D)$ 是仿射联络空间, $\gamma:[a,b]\to M$ 是一条光滑曲线, $X$ 是沿 $\gamma(t)$
+的光滑向量场, $X=X^i\pdv{x^i}$, 则
+\begin{align*}
+  \D_{\gamma'(t)} X
+  & = \D_{\gamma'(t)} \biggl(X^j\pdv{x^j}\biggr)
+    = \frac{\diff X^j}{\diff t}\pdv{x^j} + X^j\D_{\frac{\diff x^i}{\diff t}\pdv{x^i}}\pdv{x^j} \\
+  & = \biggl(\frac{\diff X^k}{\diff t} + X^j\Gamma_{ji}^k\frac{\diff x^i}{\diff t}\biggr)\pdv{x^k}.
+\end{align*}
+如果 $\D_{\gamma'(t)}X=0$, 则称向量场 $X$ 沿曲线 $\gamma(t)$ 平行, 此时
+\begin{equation}\label{eq:1.4.1}
+  \frac{\diff X^k(t)}{\diff t} + \Gamma_{ji}^k \frac{\diff x^i}{\diff t}X^j(t)=0,\quad k=1,\cdots,n.
+\end{equation}
+将上式写成矩阵形式即为
+\[\frac{\diff}{\diff t}\begin{pmatrix}
+  X^1(t) \\ \vdots \\ X^n(t)
+\end{pmatrix} =
+A(t)\begin{pmatrix}
+  X^1(t) \\ \vdots \\ X^n(t)
+\end{pmatrix}.\]
+若给定初值 $X(a)=X(\gamma(a))=v\in M_{\gamma(a)}$, 上述一阶线性齐次微分方程组有唯一解
+(从而存在唯一的切向量场满足该初值条件).
+如果存在沿 $\gamma(t)$ 平行的向量场 $X$ 使得 $X(a)=v$, $X(b)=w$,
+则称向量 $w\in M_{\gamma(b)}$ 是向量 $v\in M_{\gamma(a)}$ 沿 $\gamma(t)$ 的平行移动.
+
+如果 $\gamma(t)$ 只是 $[a,b]$ 上的分段光滑曲线, 或 $\gamma(t)$
+不落在同一坐标邻域中, 则可作 $[a,b]$ 的分段划分
+\[[a,a_1], [a_1,a_2], \cdots, [a_k,b]\]
+使得 $\gamma(t)$ 限制在每一段上都是落在同一坐标邻域中的光滑曲线.
+然后, $X(a)$ 沿 $\gamma|_{[a,a_1]}$ 平行移动得到 $X(a_1)$,
+再把 $X(a_1)$ 沿 $\gamma|_{[a_1,a_2]}$ 平行移动得到 $X(a_2)$.
+继续下去就会得到唯一的切向量 $X(b)$, 使得 $X(b)$ 是 $X(a)$ 沿 $\gamma(t)$ 的平行移动.
+
+通常记
+\[P_a^b\colon M_{\gamma(a)}\longrightarrow M_{\gamma(b)}\]
+使得
+\[P_a^b(X(a)) = X(b).\]
+
+
+\begin{theorem}
+  $P_a^b\colon M_{\gamma(a)}\longrightarrow M_{\gamma(b)}$
+  是向量空间之间的线性同构.
+\end{theorem}
+
+\begin{proof}
+  设 $v_1,\cdots,v_n\in M_{\gamma(a)}$ 是一组基底, 如果令 $X_i(b)=P_a^b(v_i)$, 则
+  $X_1(b),\cdots, X_n(b)$ 线性无关. 实际上, 若存在实数 $\lambda_1,\cdots,\lambda_n$ 使得
+  \[\lambda_1 X_1(b)+\cdots+\lambda_n X_n(b)=0.\]
+  由于每一个切向量场 $X_i(b)=P_a^t(v_i)$ 都是齐次方程组~\eqref{eq:1.4.1} 的解, 故
+  \[X(t) = \lambda_1 X_1(t)+\cdots+\lambda_n X_n(t)\]
+  也是方程组~\eqref{eq:1.4.1} 的解, 而
+  \[X(b) = \lambda_1 X_1(b)+\cdots+\lambda_n X_n(b)\]
+  显然是由 $\lambda_1 v_1+\cdots+\lambda_n v_n$ 沿 $\gamma(t)$ 平行移动的结果.
+  而方程组~\eqref{eq:1.4.1} 的解由初值唯一决定, 所以 $X(b)$
+  也是由向量 $0\in M_{\gamma(a)}$ 沿 $\gamma(t)$ 平行移动得到的结果.
+  因此 $\lambda_1 v_1+\cdots+\lambda_n v_n=0$,
+  故得 $\lambda_1,\cdots,\lambda_n$ 都为零, 即
+  $X_1(b),\cdots,X_n(b)$ 线性无关.
+
+  现由于 $M_{\gamma(b)}$ 是 $n$ 维向量空间, $X_1(b),\cdots,X_n(b)$
+  必是 $M_{\gamma(b)}$ 的基底, 于是对任意 $Y(b)\in M_{\gamma(b)}$, 假设
+  \[Y(b) = \mu_1 X_1(b)+\cdots+\mu_n X_n(b),\]
+  则 $Y(b)$ 是由
+  \[Y(a) = \mu_1 X_1(a)+\cdots+\mu_n X_n(a) = \mu_i v_i\]
+  沿 $\gamma(t)$ 平行移动的结果, 从而 $P_a^b\colon M_{\gamma(a)}\to M_{\gamma(b)}$
+  是满射. 单射是显然的, 而 $P_a^b$ 又是线性映射, 故其为线性同构.
+\end{proof}
+
+
+\begin{remark}
+  (1) 如果 $M$ 是黎曼流形, 则 $P_a^b: M_{\gamma(a)}\longrightarrow M_{\gamma(b)}$
+  是等距线性同构.
+  \begin{proof}
+    设 $X(t), Y(t)$ 是沿 $\gamma(t)$ 的平行向量场, $Z(t)=\gamma'(t)$, 则
+    \[Z(t)\innerp{X(t)}{Y(t)} = \innerp{\D_{\gamma'(t)}X(t)}{Y(t)}
+    + \innerp{X(t)}{\D_{\gamma'(t)}Y(t)} = 0,\]
+    特别地,
+    \[\frac{\diff}{\diff t} |X(t)|^2 = 0,\]
+    故 $|X(t)|$ 沿 $\gamma(t)$ 是常数, 此即 $P_a^b$ 是向量空间之间的等距.
+  \end{proof}
+
+  (2) 联络 $\D$ 由平行移动完全决定. 如果 $\forall v\in M_x$,
+  $\gamma\colon [0,b]\to M$ 是光滑曲线, 且 $\gamma(0)=x$, $\gamma'(0)=v$.
+  $P_0^t\colon M_{\gamma(0)}\to M_{\gamma(t)}$ 是平移同构,
+  其逆为 $(P_0^t)^{-1}\colon M_{\gamma(t)}\to M_{\gamma(a)}$,
+  则对任意 $X\in\mathscr{X}(M)$,
+  \begin{align*}
+    \D_v X
+    & = \left.\frac{\diff}{\diff t}\right|_{t=0} \Bigl[(P_0^t)^{-1} \bigl(X(\gamma(t))\bigr)\Bigr] \\
+    & = \lim_{t\to 0}\frac{1}{t} \Bigl((P_0^t)^{-1}\bigl(X(\gamma(t))\bigr) - X(0)\Bigr).
+  \end{align*}
+  \begin{proof}
+    由于 $P_0^t$ 是平移同构, 取 $M_{\gamma(0)}$ 的基底 $e_1,\cdots,e_n$,
+    把它们沿 $\gamma(t)$ 平行移动后得到 $M_{\gamma(t)}$ 的基底
+    $e_1(t),\cdots,e_n(t)$, 即 $e_i(t)=P_0^t(e_i)$. 设
+    \[X(\gamma(t)) = X^i(t)e_i(t).\]
+    由于
+    \begin{align*}
+      \D_{\gamma'(t)} X
+      & = \D_{\gamma'(t)} \bigl(X^i(t)e_i(t)\bigr) \\
+      & = \frac{\diff X^i(t)}{\diff t}e_i(t) + X^i(t)\D_{\gamma'(t)}e_i(t) \\
+      & = \frac{\diff X^i(t)}{\diff t}e_i(t),
+    \end{align*}
+    故
+    \[\D_v X = \left.\bigl(\D_{\gamma'(t)} X\bigr)\right|_{t=0} =
+    \left.\frac{\diff X^i(t)}{\diff t}\right|_{t=0} e_i.\]
+    另一方面,
+    \[(P_0^t)^{-1}\bigl(X(\gamma(t))\bigr) 
+    = (P_0^t)^{-1} \bigl(X^i(t)e_i(t)\bigr) = X^i(t)e_i.\]
+    故
+    \begin{align*}
+      \left.\frac{\diff}{\diff t}\right|_{t=0}\Bigl[(P_0^t)^{-1} \bigl(X(\gamma(t))\bigr)\Bigr]
+      & = \left.\frac{\diff}{\diff t}\right|_{t=0} X^i(t)e_i = \D_v X.\qedhere
+    \end{align*}
+  \end{proof}
+\end{remark}

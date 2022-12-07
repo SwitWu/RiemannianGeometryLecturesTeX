@@ -1,0 +1,264 @@
+\chapter{协变微分与曲率张量}
+
+
+
+\section{协变微分}
+
+
+
+设 $(M,\D)$ 是仿射联络空间, 协变导数 $\D$ 是一个映射
+\begin{align*}
+  \D\colon \mathscr{X}(M)\times\mathscr{X}(M) & \longrightarrow\mathscr{X}(M) \\
+  (X,Y) & \longmapsto \D_XY
+\end{align*}
+满足 $(C_1)$--$(C_3)$, 其中 $\mathscr{X}(M)$ 表示 $M$ 上光滑切向量场的集合.
+协变导数也可以用平行移动表达, 即
+\[\D_v X = \frac{\diff}{\diff t}\bigg|_{t=0} \Bigl[\bigl(P_0^t\bigr)^{-1} (X(\gamma(t)))\Bigr],\]
+其中 $\gamma(t)$ 是过 $x$, 初始切向量为 $v$ 的光滑曲线, $X(t)$ 是沿 $\gamma(t)$
+的光滑向量场. 易知 $\D_v X$ 只与 $v,X$ 有关, 而与过 $x$ 的曲线 $\gamma(t)$ 无关, 并且
+\[\D_v\colon \mathscr{X}(M)\to M_x\]
+或
+\[\D_X\colon \mathscr{X}(M)\to\mathscr{X}(M)\]
+对 $Y$ 满足 $(C_2),(C_3)$.
+现将 $\D_X$ 推广到作用在任意光滑的 $(r,s)$ 型张量场 $K\in\mathscr{T}_s^r(M)$ 上
+\footnote{$\mathscr{T}_s^r(M)$ 表示 $M$ 上 $(r,s)$ 型张量场的集合.}
+
+首先, 我们已经知道
+\begin{itemize}
+  \item $\forall f\in\mathscr{T}_0^0(M)=C^{\infty}(M)$, $\D_X f = X(f)$.
+  \item $\forall Y\in\mathscr{T}_0^1(M)=\mathscr{X}(M)$, $\D_XY$ 已在仿射联络中定义.
+\end{itemize}
+
+对于一般的 $(r,s)$ 型张量场, 规定
+
+(1) 如果 $K\in\mathscr{T}_s^r(M)$, 则 $\D_XK\in\mathscr{T}_s^r(M)$, 且
+\[(\D_XK)(x) = \D_{X(x)}K\in T_s^r(M),\]
+其中 $T_s^r$ 表示 $x$ 处的 $(r,s)$ 型张量的集合.
+
+(2) $\D_X\colon\mathscr{T}_s^r(M)\to\mathscr{T}_s^r(M)$ 满足 Leibniz 法则,
+即对于任意光滑张量场 $K_1,K_2$, 有
+\[\D_X(K_1\otimes K_2) = \D_XK_1\otimes K_2 + K_1\otimes\D_XK_2.\]
+
+(3) $\D_X$ 与缩并运算可交换, 即
+\[\D_X(C(K)) = C(\D_XK).\]
+
+\begin{remark}
+  (1) 上述对张量场的协变导数的线性扩充也可以用平行移动表示, 且不依赖于曲线 $\gamma(t)$.
+
+  (2) 由于 $\D_XK$ 关于 $X$ 是 $C^{\infty}(M)$-线性的, 于是对 $\forall K\in\mathscr{T}_s^r(M)$, 定义
+  \[D\colon \mathscr{T}_s^r(M)\longrightarrow \mathscr{T}_{s+1}^{r}(M)\]
+  使得
+  \[(DK)\bigl(\omega^1,\cdots,\omega^r,X_1,\cdots,X_s,X\bigr)
+    = (\D_XK)\bigl(\omega^1,\cdots,\omega^r,X_1,\cdots,X_s\bigr),\]
+  其中 $K\in\mathscr{T}_s^r(M)$ 看成多重线性映射
+  \[K\colon A^1(M)\times\cdots\times A^1(M)\times \mathscr{X}(M)\times\cdots\times
+    \mathscr{X}(M)\longrightarrow C^{\infty}(M).\]
+  这里 $\omega^1,\cdots,\omega^r\in A^1(M)$, $X_1,\cdots,X_s\in\mathscr{X}(M)$.
+  这时将映射 $\D$ 称为\textbf{协变微分算子}, 
+  $\D K$ 称为 $(r,s)$ 型张量场 $K$ 的\textbf{协变微分} (或共变微分).
+
+  (3) 下面看看几个特殊的例子:
+  \begin{itemize}
+    \item 对于任意的 $\eta\in A^1(M)$ 和 $Y\in\mathscr{X}(M)$, 有
+      \begin{align*}
+        (\D_X \eta)(Y)
+        & = C_1^1(Y\otimes \D_X\eta) \\
+        & = C_1^1\bigl(\D_X(Y\otimes\eta) - (\D_XY)\otimes\eta\bigr) \\
+        & = C_1^1\bigl(\D_X(Y\otimes\eta)\bigr) - C_1^1\bigl((\D_XY)\otimes\eta\bigr) \\
+        & = \D_X\bigl(C_1^1(Y\otimes\eta)\bigr) - \eta(\D_XY) \\
+        & = \D_X(\eta(Y)) - \eta(\D_XY) \\
+        & = X(\eta(Y)) - \eta(\D_XY).
+      \end{align*}
+      为了方便记忆, 可以把 $\eta(Y)$ 看作一种乘法, 把 $\D_X$ 看作求导运算, 则上式可写成
+      \[X(\eta(Y)) = (\D_X\eta)(Y) + \eta(\D_XY).\]
+    \item 对函数 $f$ 的协变微分 $\D f\in A^1(M)$, 有
+      \[(\D f)(X) = \D_X f = X(f) = \diff f(X),\]
+      即 $\D f=\diff f$, 这说明函数的协变微分就是其普通微分.
+    \item 一般地, $K\in\mathscr{T}_s^r(M)$, $\D K\in\mathscr{T}_{s+1}^r(M)$,
+      可以定义 $\D^2K=\D(\D K)\in\mathscr{T}_{s+2}^r(M)$. 特别地, $\D^2f\in\mathscr{T}_2^0(M)$,
+      故对任意 $X,Y\in\mathscr{X}(M)$, 有
+      \begin{align*}
+        (\D^2f)(X,Y)
+        & = \D(\D f)(X,Y) = (\D_Y(\D f))(X) \\
+        & = Y(\D f(X)) - \D f(\D_YX) \\
+        & = YX(f) - (\D_YX)(f).
+      \end{align*}
+      同理可得 $(\D^2f)(Y,X)=XY(f)-(\D_XY)(f)$, 故
+      \begin{align*}
+        & (\D^2f)(X,Y) - (\D^2f)(Y,X) \\
+        ={} & (\D_XY)(f) - (\D_YX)(f) - [X,Y](f) \\
+        ={} & T(X,Y)(f).
+      \end{align*}
+      因此通常 $\D^2f$ 不对称, 一般地, $\D^2K$ 也不对称.
+      若 $\D$ 为无挠联络, 即 $T\equiv 0$, 则 $\D^2 f$ 是对称的二阶协变张量场,
+      称为 $f$ 的 Hessian, 记为 $\Hess(f)=\D^2f=\D\diff f$.
+  \end{itemize}
+\end{remark}
+
+
+
+\section{曲率张量}
+
+
+
+设 $(M,\D)$ 是仿射联络空间, 给定向量场 $X,Y$, 定义映射
+\[R_{XY} = R(X,Y)\colon \mathscr{T}_s^r(M)\longrightarrow\mathscr{T}_s^r(M)\]
+为
+\[R_{XY} = \D_X\D_Y-\D_Y\D_X-\D_{[X,Y]}.\]
+称 $R_{XY}$ 是由 $X,Y$ 决定的曲率算子. 易知曲率算子有如下性质:
+
+(1) $R_{XY}$ 具有 Leibniz 法则, 即
+\[R_{XY}(K_1\otimes K_2) = R_{XY}K_1\otimes K_2 + K_1\otimes R_{XY}K_2.\]
+
+(2) $R_{XY}$ 关于 $X,Y$ 是 $C^{\infty}(M)$-线性的, 即
+\[R(fX,Y) = R(X,fY) = fR(X,Y).\]
+
+(3) $R_{XY}f=0$, 从而 $R_{XY}$ 关于 $K$ 是 $C^{\infty}(M)$-线性的, 即
+\[R_{XY}(fK) = fR_{XY}K.\]
+
+(4) $R$ 关于 $X,Y$ 是反对称的, 即 $R_{XY}=-R_{YX}$.
+
+曲率算子如果作用在向量场上, 则 $R_{XY}Z$ 也是一个向量场, 且关于 $X,Y,Z$
+均是 $C^{\infty}(M)$-线性的, 因此 $R$ 定义了一个 $(1,3)$ 型张量场
+\begin{align*}
+  R\colon \mathscr{X}(M)\times\mathscr{X}(M)\times\mathscr{X}(M) & \longrightarrow\mathscr{X}(M) \\
+  (X,Y,Z) & \longmapsto R_{XY}Z,
+\end{align*}
+或
+\begin{align*}
+  R\colon A^1(M)\times\mathscr{X}(M)\times\mathscr{X}(M)\times\mathscr{X}(M)
+  & \longrightarrow C^{\infty}(M) \\
+  (\omega,X,Y,Z) & \longmapsto \omega(R_{XY}Z).
+\end{align*}
+
+
+
+\begin{theorem}[第一 Bianchi 恒等式]
+  无挠仿射联络空间 $(M,\D)$ 的 $(1,3)$ 型曲率张量满足第一 Bianchi 恒等式
+  \[R_{XY}Z + R_{YZ}X + R_{ZX}Y = 0.\]
+\end{theorem}
+
+\begin{proof}
+  \begin{align*}
+        & R_{XY}Z + R_{YZ}X + R_{ZX}Y \\
+    ={} & \D_X\D_YZ - \D_Y\D_XZ - \D_{[X,Y]}Z + \D_Y\D_ZX - \D_Z\D_YX \\
+        & - \D_{[Y,Z]}X + \D_Z\D_XY - \D_X\D_ZY - \D_{[Z,X]}Y \\
+    ={} & \D_X\bigl(\D_YZ-\D_ZY\bigr) + \D_Y\bigl(-\D_XZ+\D_ZX\bigr) + \D_Z\bigl(-\D_YX+\D_XY\bigr) \\
+        & - \D_{[X,Y]}Z - \D_{[Y,Z]}X - \D_{[Z,X]}Y \\
+    ={} & \D_X[Y,Z] + \D_Y[Z,X] + \D_Z[X,Y] - \D_{[X,Y]}Z - \D_{[Y,Z]}X - \D_{[Z,X]}Y \\
+    ={} & [X,[Y,Z]] + [Y,[Z,X]] + [Z,[X,Y]] = 0.\qedhere
+  \end{align*}
+\end{proof}
+
+根据曲率算子的定义 $R_{XY} = R(X,Y)\colon \mathscr{T}_s^r(M)\to\mathscr{T}_s^r(M)$,
+$R$ 关于 $X,Y$ 是 $C^{\infty}(M)$ 线性的, 因此 $R$ 可以看成更高阶的张量,
+于是可以对其求协变导数得到同型的张量 $(\D_XR)_{YZ}$.
+
+\begin{theorem}[第二 Bianchi 恒等式]
+  无挠仿射联络空间 $(M,\D)$ 的曲率张量满足第二 Bianchi 恒等式
+  \[(\D_XR)_{YZ} + (\D_YR)_{ZX} + (\D_{ZR})_{XY} = 0.\]
+\end{theorem}
+
+\begin{proof}
+  任取 $K\in\mathscr{T}_s^r(M)$, 有
+  \[(\D_XR)_{YZ}K = \D_X(R_{YZ}K) - R_{YZ}(\D_XK) - R_{\D_X Y, Z}K
+    - R_{Y, \D_XZ}K,\]
+  \[(\D_YR)_{ZX}K = \D_Y(R_{ZX}K) - R_{ZX}(\D_YK) - R_{\D_Y Z, X}K
+    - R_{Z, \D_YX}K,\]
+  \[(\D_ZR)_{XY}K = \D_Z(R_{XY}K) - R_{XY}(\D_Z)K - R_{\D_Z X, Y}K
+    - R_{X, \D_ZY}K.\]
+  三式相加, 由 $\D$ 的无挠性, 并经过计算得
+  \begin{align*}
+      & (\D_XR)_{YZ}K + (\D_YR)_{ZX}K + (\D_ZR)_{XY}K \\
+  ={} & \D_{[[X, Y], Z] + [[Y, Z], X] + [[Z, X], Y]}K = 0.
+  \end{align*}
+
+  如果在自然标架场下, 可令 $[X,Y]=0$, 由 $\D$ 的无挠性,
+  $\D_XY = \D_YX$, $R_{XY} = \D_X\D_Y - \D_Y\D_X$,
+  此时证明变得简单.
+\end{proof}
+
+
+
+
+\section{黎曼曲率张量}
+
+
+
+\section{截面曲率}
+
+
+设 $\Pi$ 是 $M_x$ 的一个二维子空间, $\{v_1,v_2\}$ 是 $\Pi$ 的任何一组基底,
+定义 $\Pi$ 的截面曲率为
+\[K(\Pi) = -\frac{R(v_1,v_2,v_1,v_2)}{|v_1\wedge v_2|^2},\]
+其中 $|v_1\wedge v_2|^2 = |v_1|^2|v_2|^2-\innerp{v_1}{v_2}^2$,
+即以 $v_1,v_2$ 为边的平行四边形的面积的平方.
+
+如果 $\{e_1,e_2\}$ 是 $\Pi$ 的另一组基底, 设 $v_i=a_i^je_j$, 则
+\[v_1\wedge v_2 = \det(a_i^j)e_1\wedge e_2,\]
+\[|v_1\wedge v_2|^2 = |\det(a_i^j)|^2|e_1\wedge e_2|^2.\]
+另一方面,
+\begin{align*}
+      & R(v_1,v_2,v_1,v_2) \\
+  ={} & R(a_1^1e_1+a_1^2e_2, a_2^1e_1+a_2^2e_2, a_1^1e_1+a_1^2e_2, a_2^1e_1+a_2^2e_2) \\
+  ={} & R(a_1^1e_1, a_2^2e_2, a_1^1e_1, a_2^2e_2) + R(a_1^1e_1, a_2^2e_2, a_1^2e_2, a_2^1e_1) \\
+      & + R(a_1^2e_2, a_2^1e_1, a_1^1e_1, a_2^2e_2) + R(a_1^2e_2, a_2^2e_2, a_1^2e_2, a_2^1e_1) \\
+  ={} & (a_1^1)^2(a_2^2)^2 R(e_1,e_2,e_1,e_2) - a_1^1a_2^2a_1^2a_2^1 R(e_1,e_2,e_1,e_2) \\
+      & - a_1^2a_2^1a_1^1a_2^2 R(e_1,e_2,e_1,e_2) - (a_1^2)^2(a_2^1)^2 R(e_1,e_2,e_1,e_2) \\
+  ={} & \bigl(a_1^1a_2^2 - a_1^2a_2^1\bigr)^2 R(e_1,e_2,e_1,e_2) \\
+  ={} & |\det(a_i^j)|^2 R(e_1,e_2,e_1,e_2).
+\end{align*}
+故
+\[K(\Pi) = -\frac{R(v_1,v_2,v_1,v_2)}{|v_1\wedge v_2|^2}
+  = -\frac{R(e_1,e_2,e_1,e_2)}{|e_1\wedge e_2|^2}\]
+与截面 $\Pi$ 的基底选取无关. 其是定义在 $M_x$ 的所有二维子空间上的函数.
+$M_x$ 的二维子空间集合是一个 Grassmann 流形, 记为 $Gr_2(x)$.
+当 $x\in M$ 任意取值时, 就得到一个 Grassmann 丛, 记为 $Gr_2(M)$,
+\[\pi\colon Gr_2(M)\to M,\quad \pi^{-1}(x) = Gr_2(x).\]
+因此截面曲率 $K(\Pi)=K(x,\Pi_x)$ 是定义在 Grassmann 丛 $Gr_2(M)$ 上的光滑函数.
+
+设 $\varphi\colon M\to N$ 是等距, 则由曲率张量的性质, 
+如果 $\varphi_*(\Pi)=\widetilde{\Pi}$ 是 $N$ 中的二维截面, 
+则 $K(x,\Pi_x)=\widetilde{K}\bigl(\varphi(x),\widetilde{\Pi}_{\varphi(x)}\bigr)$.
+
+
+在黎曼流形 $(M,g)$ 上, 任取局部标架场 $\{e_i\}$ 及其对偶标架场 $\{\omega^i\}$, 有
+\[\omega^i = g^{ij}\innerp{e_j}{\cdot}.\]
+
+设 $p\in M$, 对于任意 $u,v\in T_p(M)$, 借助于曲率张量可以定义线性变换
+$A_{u,v}\colon T_p(M)\to T_p(M)$, 使得
+\[A_{u,v}(w) = R(w,u)v,\quad \forall w\in T_p(M).\]
+显然 $A_{u,v}$ 是 $T_p(M)$ 上的 $(1,1)$ 型张量, 
+线性变换 $A_{u,v}$ 的迹就是它作为 $(1,1)$ 型张量的缩并, 记作 $\Ric(u,v)$.
+于是对于 $M$ 上任意的局部标架场 $\{e_i\}$ 及其对偶标架场 $\{\omega^i\}$, 有
+\begin{align*}
+  \Ric(u,v)
+  & = \sum_{i=1}^n \omega^i(R(e_i,u)v) \\
+  & = \sum_{i,j=1}^n g^{ij} \innerp{e^j}{R(e_i,u)v} \\
+  & = -\sum_{i,j=1}^n g^{ij} R(e_i,u,e_j,v).
+\end{align*}
+
+由此我们给出下面的
+\begin{definition}
+  由下式定义的二阶对称协变张量场
+  \begin{align*}
+    \Ric\colon\mathscr{X}(M)\times\mathscr{X}(M)
+    & \longrightarrow C^{\infty}(M) \\
+    (X,Y) & \longmapsto \Ric(X,Y) = -\sum_{i,j=1}^n R(e_i,X,e_j,Y)
+  \end{align*}
+  称为 $M$ 上的 \textbf{Ricci 曲率张量场}. 
+ 
+  特别地, 若取幺正标架场 $\{e_i\}$, 则
+  \[\Ric(X,Y) = -\sum_{i=1}^n R(e_i,X,e_i,Y).\]
+\end{definition}
+
+按照习惯记法, 把 Ricci 曲率张量 $\Ric$ 的分量记为 $R_{ij}$, 即
+\begin{align*}
+  R_{ij}
+  & = R(e_i,e_j) = -\sum_{k,l=1}^n g^{kl}R(e_k,e_i,e_l,e_j) = g^{kl}R_{iklj}.
+\end{align*}
+于是
+\[\Ric = R_{ij}\omega^i\otimes\omega^j = g^{kl}R_{iklj}\omega^i\otimes\omega^j.\]
+
+至此, 在黎曼流形 $(M,g)$ 上有两个对称的二阶协变张量场,
+一个是度量张量场 $g$, 另一个是 Ricci 曲率张量场 $\Ric$.

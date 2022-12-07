@@ -1,0 +1,67 @@
+\documentclass[a4paper]{report}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{ctex}
+\usepackage{physics}
+
+\DeclarePairedDelimiterX{\innerp}[2]{\langle}{\rangle}{#1,#2}
+\DeclarePairedDelimiterX{\poissonbra}[2]{[}{]}{#1,#2}
+\setlist{nosep}
+\newcommand{\FR}{\mathbb{R}}
+\newcommand{\D}{\mathrm{D}}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\renewcommand{\div}{\operatorname{div}}
+
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Ric}{Ric}
+% \DeclareMathOperator{\tr}{tr}
+
+
+\newtheoremstyle{mystyle}{3pt}{3pt}{\rmfamily}{\parindent}{\bfseries}{}{.5em}{}
+\theoremstyle{mystyle}
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{remark}{注记}[chapter]
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+
+\setCJKmainfont{SimSun}[ItalicFont=KaiTi,BoldFont=SimHei]
+
+\makeatletter
+  \renewenvironment{proof}[1][\proofname]{\par
+    \pushQED{\qed}%
+    \normalfont \topsep6\p@\@plus6\p@\relax
+    \trivlist
+    \item\relax
+          {\hspace*{\parindent}\bfseries#1}\hspace\labelsep\ignorespaces
+  }{%
+    \popQED\endtrivlist\@endpefalse
+  }
+  \makeatother
+
+% \usepackage{tcolorbox}
+% \tcbuselibrary{skins}
+% \tcolorboxenvironment{theorem}{enhanced,colback=red!5!white,colframe=red!75!black,sharp corners,drop fuzzy shadow}
+% \tcolorboxenvironment{definition}{enhanced,colback=blue!5!white,colframe=blue!40!black,sharp corners,drop fuzzy shadow}
+% \tcolorboxenvironment{lemma}{enhanced,colback=cyan!5!white,colframe=cyan!75!black,sharp corners,drop fuzzy shadow}
+
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+
+\title{黎曼几何讲义}
+\author{武思豫整理}
+\date{\today}
+
+\begin{document}
+  
+\maketitle
+
+\input{lecture01.tex}
+\input{lecture02.tex}
+\input{lecture04.tex}
+\input{lecture05.tex}
+
+\end{document}
